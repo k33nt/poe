@@ -20,9 +20,18 @@ app.use(express.json());
 // Serve static HTML files from the 'public' folder
 app.use(express.static('public'));
 
+// Routes for serving HTML files
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/public/login.html');
+});
+
+app.get('/register', (req, res) => {
+  res.sendFile(__dirname + '/public/register.html');
+});
+
 app.use('/auth', authRoutes);
 app.use('/files', fileRoutes);
-app.use('/user', userRoutes);
+app.use('/', userRoutes);
 
 const PORT = process.env.PORT || 3000;
 
